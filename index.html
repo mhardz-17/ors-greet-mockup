@@ -1,0 +1,173 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Greet Mockup</title>
+    <link rel="stylesheet" href="bootstrap/css/bootstrap.css" type="text/css">
+    <link rel="stylesheet" href="app.css" type="text/css">
+</head>
+<body ng-app="GreetApp" ng-class="$body_class == 'blue' ? 'blue' : 'white'">
+<script type="text/ng-template" id="embedded.home.html">
+    <div id="home">
+        <div id="header" class="row" >
+            <h1 style="line-height: 300px">Welcome</h1>
+        </div>
+        <div class="footer row" style="margin-bottom: 150px">
+            <a href="#/search-data" class="main-btn btn btn-success btn-lg">Checkin</a>
+            <a href="#/checkout" class="main-btn btn btn-danger btn-lg">Checkout</a>
+        </div>
+        <p>&nbsp;</p>
+    </div>
+</script>
+<script type="text/ng-template" id="embedded.search_data.html">
+    <div id="search-data">
+        <div id="header" class="row" style="height: 25%">
+            <div class="col-xs-8 col-sm-8 col-md-9" style="text-align: left">
+                <a href="#/search-data" class="main-btn btn btn-success btn-lg">I have a <br />QR Code</a>
+                <a href="#/home" class="main-btn btn btn-danger btn-lg">Cancel <br />Sign in</a>
+            </div>
+            <div class="time-display col-xs-4 col-sm-4 col-md-3" style="text-align: right" ng-click="toggleTime()" title="Click Me to Change Time">
+                Today is : June 13, 2016 <br /> {{ current_time }}
+            </div>
+        </div>
+        <div class="row"><p>&nbsp;</p></div>
+        <div id="body" class="row" style="text-align: center">
+                <div class="search-area">
+                    <input type="text" ng-model="firstname" name="firstname" value="" class="input-lg" placeholder="First Name">
+                    <input type="text" ng-model="lastname" name="lastname" value="" class="input-lg" placeholder="Last Name">
+                    <div class="search-result" ng-show="showResult()">
+                        <p>
+                            2 pre-registered meetings found…. <br>
+                        </p>
+                        <button class="btn" ng-click="selectEntry()">10:00 AM to 11:00 AM</button><br>
+                        <button class="btn">4:00 PM to 5:00 PM</button>
+                    </div>
+                </div>
+        </div>
+        <div class="footer text-center">
+            Select the time you want to attend the meeting
+        </div>
+    </div>
+</script>
+<script type="text/ng-template" id="embedded.invalid_time_in_time.html">
+    <div id="search-data" style="background-color: #ffffff">
+        <div class="row">
+            <div class="col-md-4">
+                <img src="image/no-entry.png" alt="No Entry">
+            </div>
+        </div>
+        <div class="body" style="width: 40%; margin: auto; font-size: 35px; text-align: center">
+            Hi Jay, you are only allowed to check in from 9:45 AM.
+        </div>
+    </div>
+</script>
+<script type="text/ng-template" id="embedded.confirm_checkin.html">
+    <div id="confirm-checkin">
+        <div id="header" class="row" style="height: 25%">
+            <div class="col-xs-8 col-sm-8 col-md-9" style="text-align: left">
+                <!-- <a href="#/search-data" class="btn btn-success btn-lg">I have a <br />QR Code</a> -->
+                <a href="#/home" class="main-btn btn btn-danger btn-lg">Cancel <br />Sign in</a>
+            </div>
+            <div class="time-display col-xs-4 col-sm-4 col-md-3" style="text-align: right" ng-click="toggleTime()" title="Click Me to Change Time">
+                Today is : June 13, 2016 <br /> 09:51 AM
+            </div>
+        </div>
+        <div class="row"><p>&nbsp;</p></div>
+        <div id="body" class="row body" style="text-align: center">
+            <p style="font-size: 25px" class="lead">10:00 AM to 11:00 AM <br>
+            Visiting : Mr. Jojo Talactac <br>
+            Room : PSG XXX</p>
+
+            <p style="text-align: left; font-size: 20px">Message: <br> Hi Jay, I will meet you at the PSG Lobby Area.</p>
+            <p>
+                <a href="#/dangerous-goods" class="btn btn-success btn-lg">Confirm & Checkin</a>
+            </p>
+        </div>
+        <div class="footer text-center">
+           Please check your meeting details then click confirm
+        </div>
+    </div>
+</script>
+<script type="text/ng-template" id="embedded.main.html">
+    <div id="dangerous-goods">
+        <div id="header" class="row" style="height: 25%">
+            <div class="col-xs-8 col-sm-8 col-md-9 question-text" ng-bind-html="header_text"></div>
+            <div class="col-xs-4 col-sm-4 col-md-3" style="text-align: right" ng-click="toggleTime()" title="Click Me to Change Time">
+                Today is : June 13, 2016 <br /> {{ current_time }}
+            </div>
+        </div>
+        <div class="row"><p>&nbsp;</p></div>
+        <div id="body" class="container body" style="text-align: center">
+            <ng-include src="action"></ng-include>
+        </div>
+        <div class="footer text-center">
+            {{ footer_text }}
+        </div>
+    </div>
+</script>
+<script type="text/ng-template" id="dangerous-goods">
+    <img src="image/dangerous-goods.png" alt="Dangerous Goods" style="100%">
+    <h2 class="question-text">Are you carrying any dangerous goods?</h2>
+    <p><a href="#/electronic-device" class="btn btn-lg btn-success">No, proceed to check in</a>
+        &nbsp;<a href="#/electronic-device" class="btn btn-lg btn-danger" style="width: 100px">Yes</a></p>
+</script>
+<script type="text/ng-template" id="electronic-device">
+    <p style="line-height: 300px"><a style="width: 100px" href="#/electronic-device-select" class="btn btn-lg btn-success">No</a>
+        &nbsp;<a style="width: 100px" href="#/electronic-device-select" class="btn btn-lg btn-danger">Yes</a></p>
+</script>
+<script type="text/ng-template" id="electronic-device-select">
+    <div class="col-md-2 col-md-offset-10 text-right"><button class="btn btn-success" ng-click="addDevice()">Add</button></div>
+    <div>
+        <input type="text" ng-model="device.brand" name="brand" value="" class="input-lg" placeholder="Brand/Model">
+        <input type="text" ng-model="device.serial_no" name="serial_no" value="" class="input-lg" placeholder="Serial No">
+    </div>
+    <p>&nbsp;</p>
+    <div>
+        <span ng-repeat="(key,device) in registered_devices"><button class="btn ">{{device }} &nbsp; <span aria-hidden="true" ng-click="removeDevice(key)">&times;</span></button> &nbsp;</span>
+    </div>
+    <p>&nbsp;</p>
+    <p><a href="#/take-picture" class="btn btn-lg btn-success" style="width: 150px">Done</a></p>
+</script>
+<script type="text/ng-template" id="take-picture">
+    <a href="#/printing">
+        <img src="image/take-picture.png" alt="Take Picture">
+    </a>
+    <p>&nbsp;</p>
+</script>
+<script type="text/ng-template" id="printing">
+    <div class="row" style="width: 60%; margin: 0 auto">
+
+        <div class="col-xs-6 col-sm-6 col-md-6">
+            <a href="#/finish-process">
+                <img style='width:200px;height:200px; margin-right:10px;' src="image/print-1.png" />
+            </a>
+            <p>Self Adhesive ID</p>
+        </div>
+        <div class="col-xs-6 col-sm-6 col-md-6">
+            <a href="#/finish-process">
+                <img style='width:300px;height:200px; margin-right:10px;' src="image/print-2.png" />
+            </a>
+            <p>Device Tag</p>
+        </div>
+    </div>
+</script>
+<script type="text/ng-template" id="finish-process">
+    <div class="col-xs-12 col-md-12 col-sm-12">
+        <div class="col-xs-6 col-sm-4 col-md-3 col-xs-offset-6 col-sm-offset-8 col-md-offset-9">
+            <img src="image/device-tage.png" alt="Device Tag">
+            <p style="color: red; font-size: 20px">Stick the device tag close to device serial number</p>
+        </div>
+    </div>
+</script>
+
+<div class="container">
+    <div ng-view></div>
+</div>
+
+
+<script src="angular.min.js" type="text/javascript"></script>
+<script src="angular-route.js" type="text/javascript"></script>
+<script src="bootstrap/js/ui-bootstrap-tpls-1.3.3.min.js" type="text/javascript"></script>
+<script src="app.js" type="text/javascript"></script>
+</body>
+</html>

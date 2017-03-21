@@ -1,0 +1,79 @@
+html {
+    position: relative;
+    /*max-width: 1024px;*/
+    height: 100%;
+    padding: 5px;
+}
+body {
+    height: 100%;
+    padding: 5px;
+    margin: 0 auto;
+    width: 100%;
+}
+body.blue {
+    background: blue; /* For browsers that do not support gradients */
+    background: -webkit-linear-gradient(#67b7ff, blue); /* For Safari 5.1 to 6.0 */
+    background: -o-linear-gradient(#67b7ff, blue); /* For Opera 11.1 to 12.0 */
+    background: -moz-linear-gradient(#67b7ff, blue); /* For Firefox 3.6 to 15 */
+    background: linear-gradient(#67b7ff, blue); /* Standard syntax */
+}
+
+body.white {
+    /*background: #F2DEDE;*/
+    background-color: #ffffff;
+}
+
+#home {
+    text-align: center;
+}
+
+#home #header {
+    height: 80%;
+}
+#home h1 {
+    color: #2552a4;
+    font-weight: bold;
+    font-size: 150px;
+}
+
+.time-display {
+    font-size: 20px;
+}
+
+.search-area {
+    width: 50%;
+    margin: 0 auto;
+}
+.search-result button {
+    width: 250px;
+    margin-bottom: 2px;
+    border: 2px solid #888888;
+    background-color: #b3fbfe;
+}
+
+.footer {
+    position:fixed;
+    left:0px;
+    bottom:0px;
+    height:30px;
+    width:100%;
+    /*background:#999;*/
+    color:blue;
+    font-weight: bold;
+    font-size: 25px;
+    /*max-width: 1024px;*/
+}
+
+#confirm-checkin #body {
+    margin: 0 auto;
+    width: 40%;
+}
+
+.main-btn {
+    font-size: 40px;
+}
+
+.question-text {
+    color: coral;
+    font-size: 25px;
+}
